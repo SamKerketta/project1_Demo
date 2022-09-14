@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ResetPasswordController;
 use PhpParser\Node\Scalar\MagicConst\Function_;
 
 /*
@@ -35,3 +36,10 @@ Route::group(['middleware'=>'auth:sanctum'],function()
 
 //student routes
 Route::put("updatestudent/{id}",[StudentController::class,"studentup"]);
+
+//password reset
+Route::controller(ResetPasswordController::class)->group(function ()
+{
+    Route::post("send","send");
+});
+
